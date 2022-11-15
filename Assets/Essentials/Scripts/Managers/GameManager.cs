@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MSingleton<GameManager>
 {
+    public int maxCardsOnDeck;
     private bool isGamePlaying;
 
     public bool IsGamePlaying => isGamePlaying;
