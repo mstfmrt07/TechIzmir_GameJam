@@ -19,4 +19,9 @@ public class Player : MSingleton<Player>
     {
         cardDeck.PlayCard(card);
     }
+
+    public void GetDamage()
+    {
+        
+    }
 }

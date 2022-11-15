@@ -1,15 +1,21 @@
+using System;
 using UnityEngine;
 
 public class Card : MonoBehaviour
 {
     private CardData data;
     private bool isPlayed;
+    private int armor;
+    private int damage;
 
     public CardData Data => data;
+    public Action OnDestroy;
 
     public void InitializeCard(CardData data)
     {
         this.data = data;
+        this.armor = data.armor;
+        this.damage = data.damage;
         isPlayed = false;
     }
 
@@ -44,5 +50,15 @@ public class Card : MonoBehaviour
     public void DestroyCard()
     {
 
+    }
+
+    public void GetDamage(int damage)
+    {
+        armor -= damage;
+
+        if (armor <= 0)
+        {
+            OnDestroy?.Invoke();
+        }
     }
 }
