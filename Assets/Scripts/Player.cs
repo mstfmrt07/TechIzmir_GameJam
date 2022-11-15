@@ -9,4 +9,14 @@ public class Player : MSingleton<Player>
     public Stat mana;
     public Stat damage;
     public CardDeck cardDeck;
+
+    private void Awake()
+    {
+        cardDeck.ShuffleCards();
+    }
+
+    public void PlayCard(Card card)
+    {
+        cardDeck.PlayCard(card);
+    }
 }
