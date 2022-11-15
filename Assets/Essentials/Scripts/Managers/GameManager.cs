@@ -4,15 +4,8 @@ using UnityEngine;
 public class GameManager : MSingleton<GameManager>
 {
     private bool isGamePlaying;
-    private float gameFlowSpeed = 1f;
-    private int score;
-    private bool highScoreBeaten;
 
     public bool IsGamePlaying => isGamePlaying;
-    public int Score => score;
-    public int HighScore => SaveManager.Instance.HighScore;
-
-    public Action OnHighScoreBeaten;
 
     private void Start()
     {
@@ -24,10 +17,8 @@ public class GameManager : MSingleton<GameManager>
         if (isGamePlaying)
             return;
 
-        score = 0;
-        highScoreBeaten = false;
 
-        GameEvents.OnGameLoad?.Invoke();
+        GameEvents.OnLevelLoaded?.Invoke();
     }
 
     public void StartGame()
@@ -35,22 +26,15 @@ public class GameManager : MSingleton<GameManager>
         if (isGamePlaying)
             return;
 
-        gameFlowSpeed = 1f;
         isGamePlaying = true;
 
-        GameEvents.OnGameStarted?.Invoke();
+        GameEvents.OnLevelStarted?.Invoke();
     }
 
     private void Update()
     {
         if (!isGamePlaying)
             return;
-
-        if (score > HighScore && HighScore > 0 && !highScoreBeaten)
-        {
-            highScoreBeaten = true;
-            OnHighScoreBeaten?.Invoke();
-        }
     }
 
     public void FinishGame()
@@ -60,28 +44,11 @@ public class GameManager : MSingleton<GameManager>
 
         isGamePlaying = false;
 
-        GameEvents.OnGameFailed?.Invoke();
-    }
-
-    public void RecoverGame()
-    {
-        //Todo implement Recover game
-        if (isGamePlaying)
-            return;
-
-        isGamePlaying = true;
-
-        GameEvents.OnGameRecovered?.Invoke();
+        GameEvents.OnLevelFailed?.Invoke();
     }
 
     public void RestartGame()
     {
-        isGamePlaying = false;
-        gameFlowSpeed = 1f;
-
-        if (score > HighScore)
-            SaveManager.Instance.HighScore = score;
-
         RecycleBin.Instance.DisposeAll();
         LoadGame();
     }

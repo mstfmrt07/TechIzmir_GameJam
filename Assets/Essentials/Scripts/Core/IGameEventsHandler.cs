@@ -1,8 +1,8 @@
 public interface IGameEventsHandler
 {
     void SubscribeGameEvents();
-    void OnGameLoad();
-    void OnGameStarted();
-    void OnGameFailed();
-    void OnGameRecovered();
+    void OnLevelLoaded();
+    void OnLevelStarted();
+    void OnLevelFailed();
+    void OnLevelSucceeded();
 }

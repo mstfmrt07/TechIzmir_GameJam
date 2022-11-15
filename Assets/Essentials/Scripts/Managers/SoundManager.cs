@@ -26,10 +26,10 @@ public class SoundManager : MSingleton<SoundManager>, IGameEventsHandler
 
     public void SubscribeGameEvents()
     {
-        GameEvents.OnGameLoad += OnGameLoad;
-        GameEvents.OnGameStarted += OnGameStarted;
-        GameEvents.OnGameFailed += OnGameFailed;
-        GameEvents.OnGameRecovered += OnGameRecovered;
+        GameEvents.OnLevelLoaded += OnLevelLoaded;
+        GameEvents.OnLevelStarted += OnLevelStarted;
+        GameEvents.OnLevelFailed += OnLevelFailed;
+        GameEvents.OnLevelSucceeded += OnLevelSucceeded;
     }
 
     public AudioSource PlaySound(AudioClip clip, bool looping = false, float lifeTime = -1f)
@@ -61,22 +61,19 @@ public class SoundManager : MSingleton<SoundManager>, IGameEventsHandler
         return audioSource;
     }
 
-    public void OnGameLoad()
-    {
-        bgSource.Play();
-    }
-
-    public void OnGameStarted()
+    public void OnLevelLoaded()
     {
     }
 
-    public void OnGameFailed()
+    public void OnLevelStarted()
     {
-        bgSource.Pause();
     }
 
-    public void OnGameRecovered()
+    public void OnLevelFailed()
     {
-        bgSource.Play();
+    }
+
+    public void OnLevelSucceeded()
+    {
     }
 }

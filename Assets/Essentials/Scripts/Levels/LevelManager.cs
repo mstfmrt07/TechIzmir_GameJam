@@ -33,7 +33,7 @@ public class LevelManager : MSingleton<LevelManager>
         }
 
         currentLevel = Instantiate(levels[CurrentLevelIndex], levelContainer);
-        GameEvents.OnGameLoad?.Invoke();
+        GameEvents.OnLevelLoaded?.Invoke();
     }
 
     public void LoadCurrentLevel()

@@ -9,25 +9,25 @@ public class InputManager : MSingleton<InputManager>, IGameEventsHandler
 
     public void SubscribeGameEvents()
     {
-        GameEvents.OnGameLoad += OnGameLoad;
-        GameEvents.OnGameStarted += OnGameStarted;
-        GameEvents.OnGameFailed += OnGameFailed;
-        GameEvents.OnGameRecovered += OnGameRecovered;
+        GameEvents.OnLevelLoaded += OnLevelLoaded;
+        GameEvents.OnLevelStarted += OnLevelStarted;
+        GameEvents.OnLevelFailed += OnLevelFailed;
+        GameEvents.OnLevelSucceeded += OnLevelSucceeded;
     }
 
-    public void OnGameLoad()
+    public void OnLevelLoaded()
     {
     }
 
-    public void OnGameStarted()
+    public void OnLevelStarted()
     {
     }
 
-    public void OnGameFailed()
+    public void OnLevelFailed()
     {
     }
 
-    public void OnGameRecovered()
+    public void OnLevelSucceeded()
     {
     }
 }
