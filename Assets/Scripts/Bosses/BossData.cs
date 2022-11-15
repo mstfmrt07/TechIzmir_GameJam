@@ -7,6 +7,6 @@ public class BossData : ScriptableObject
     public Sprite bossImg;
     [TextArea(0, 25)] public string description;
     public int hp;
-    public int damage;
+    public Range<int> damageRange;
 }
 

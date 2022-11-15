@@ -5,17 +5,24 @@ using System;
 
 public class Boss : MonoBehaviour
 {
-    private BossData data;
+    public BossData data;
     private int hp;
-    private int damage;
+    private Range<int> damageRange;
     public BossData Data => data;
     public Action OnDestroy;
 
-    public void InitializeBoss(BossData data)
+    private Player currentEnemy;
+
+    private void Awake()
     {
-        this.data = data;
-        this.hp = data.hp;
-        this.damage = data.damage;
+        StartFight(Player.Instance);
+    }
+
+    public void StartFight(Player player)
+    {
+        hp = data.hp;
+        damageRange = data.damageRange;
+        currentEnemy = player;
     }
 
     public void GetDamage(int damage)
@@ -28,8 +35,22 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void Attack(Card card)
+    public void AttemptAttack()
     {
+        var enemyCards = currentEnemy.CardsOnTable;
+        Card cardToAttack = null;
 
+        foreach (Card card in enemyCards)
+        {
+
+        }
+
+        Attack(currentEnemy, cardToAttack);
+    }
+
+    public void Attack(Player player, Card card = null)
+    {
+        var dealtDamage = UnityEngine.Random.Range(damageRange.min, damageRange.max + 1);
+        player.GetDamage(card, dealtDamage);
     }
 }

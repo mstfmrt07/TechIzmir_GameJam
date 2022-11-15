@@ -9,7 +9,11 @@ public class Card : MonoBehaviour
     private int damage;
 
     public CardData Data => data;
+    public int Armor => armor;
+    public int Damage => damage;
+
     public Action OnDestroy;
+    public Action<Card, int> OnGetDamage;
 
     public void InitializeCard(CardData data)
     {
@@ -30,20 +34,20 @@ public class Card : MonoBehaviour
         switch (data.type)
         {
             case CardType.Defense:
-                player.armor.AddModifier(data.armor);
+                //TODO do something with armor
                 break;
             case CardType.Attack:
-                player.armor.AddModifier(data.damage);
+                player.Attack(data.damage);
                 break;
             case CardType.Spell:
-                player.armor.AddModifier(data.armor);
-                player.mana.AddModifier(data.damage);
+                //TODO do something with armor
+                player.Attack(data.damage);
                 break;
             default:
                 break;
         }
 
-        player.damage.RemoveModifier(data.requiredMana);
+        player.SpendMana(data.requiredMana);
         isPlayed = true;
     }
 
@@ -55,6 +59,7 @@ public class Card : MonoBehaviour
     public void GetDamage(int damage)
     {
         armor -= damage;
+        OnGetDamage?.Invoke(this, damage);
 
         if (armor <= 0)
         {
