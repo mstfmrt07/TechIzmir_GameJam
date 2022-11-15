@@ -3,8 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour, IPointerDownHandler
+public class CardUI : MonoBehaviour, IPointerUpHandler
 {
+    [Header("References")]
+    public DraggableUI cardDragger;
+    public GameObject ghostCard;
+
     private Card card;
     public Image cardImage;
     public TextMeshProUGUI armorText;
@@ -17,7 +21,14 @@ public class CardUI : MonoBehaviour, IPointerDownHandler
     {
         this.card = card;
         card.OnGetDamage += UpdateUI;
-        card.OnDestroy += OnDestroyUI;
+        card.OnDestroy += DestroyUI;
+        card.OnCardPlayed += DestroyUI;
+
+        cardDragger.IsActive = true;
+        cardDragger.OnDragEnded += PlayCard;
+        cardDragger.OnDragStarted += OnDragStarted;
+        cardDragger.OnDragCancelled += OnDragCancelled;
+
         UpdateUI(card, 0);
     }
 
@@ -31,24 +42,48 @@ public class CardUI : MonoBehaviour, IPointerDownHandler
         manaText.text = card.Data.requiredMana.ToString();
     }
 
-    public void OnDestroyUI()
+    public void DestroyUI()
     {
         card.OnGetDamage -= UpdateUI;
-        card.OnDestroy -= OnDestroyUI;
+        card.OnDestroy -= DestroyUI;
+        card.OnCardPlayed -= DestroyUI;
+
+        cardDragger.IsActive = false;
+        cardDragger.OnDragEnded -= PlayCard;
+        cardDragger.OnDragStarted -= OnDragStarted;
+        cardDragger.OnDragCancelled -= OnDragCancelled;
+
+        Destroy(gameObject);
     }
 
     public void InspectCard()
     {
+        if (cardDragger.ExceededDragTimeThreshold)
+            return;
+
         CardInspectorUI.Instance.InspectCard(this);
     }
 
     public void PlayCard()
     {
-        //TODO implement play card
+        Player.Instance.PlayCard(card);
+
+        DestroyUI();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        InspectCard();
+        //if (cardDragger.IsDragging)
+        //    return;
+
+        //InspectCard();
+    }
+
+    public void OnDragStarted()
+    {
+    }
+
+    public void OnDragCancelled()
+    {
     }
 }

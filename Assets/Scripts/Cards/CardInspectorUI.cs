@@ -4,7 +4,7 @@ public class CardInspectorUI : MSingleton<CardInspectorUI>
 {
     public GameObject inspectorPanel;
     public Transform container;
-    private CardUI currentCard;
+    private GameObject currentCard;
     public float scaleFactor;
 
     private void Awake()
@@ -16,7 +16,9 @@ public class CardInspectorUI : MSingleton<CardInspectorUI>
     {
         inspectorPanel.SetActive(true);
 
-        currentCard = Instantiate(cardUI, container);
+        currentCard = Instantiate(cardUI.cardDragger.gameObject, container);
+
+        currentCard.GetComponent<DraggableUI>().IsActive = false;
         currentCard.transform.localPosition = Vector3.zero;
         currentCard.transform.rotation = Quaternion.Euler(Vector3.zero);
         currentCard.transform.localScale = Vector3.one * scaleFactor;
