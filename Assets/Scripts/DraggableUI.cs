@@ -10,7 +10,7 @@ public class DraggableUI : Activatable, IBeginDragHandler, IDragHandler, IEndDra
     private bool isDragging = false;
     private bool isInSnapRange = false;
 
-    private float dragTimeTreshold = 0.4f;
+    private float dragTimeTreshold = 0.25f;
     private float dragTimer = 0f;
     private Vector2 dragOffset;
     private Vector3 originalPos;

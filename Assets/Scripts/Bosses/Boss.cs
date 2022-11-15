@@ -1,38 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class Boss : MonoBehaviour
 {
     public BossData data;
-    private int hp;
+    public BossUI bossUI;
+
+
+    private int currentHP;
     private Range<int> damageRange;
     public BossData Data => data;
     public Action OnDestroy;
+    public Action<int> OnGetDamage;
 
     private Player currentEnemy;
 
+    public int CurrentHP => currentHP;
+
     private void Awake()
     {
-        StartFight(Player.Instance);
+        bossUI.gameObject.SetActive(false);
     }
 
     public void StartFight(Player player)
     {
-        hp = data.hp;
+        currentHP = data.hp;
         damageRange = data.damageRange;
         currentEnemy = player;
+
+        bossUI.gameObject.SetActive(true);
+        bossUI.Initialize(this);
     }
 
     public void GetDamage(int damage)
     {
-        hp -= damage;
+        currentHP -= damage;
 
-        if(hp <= 0)
+        if(currentHP <= 0)
         {
             OnDestroy?.Invoke();
         }
+
+        OnGetDamage?.Invoke(damage);
     }
 
     public void AttemptAttack()
