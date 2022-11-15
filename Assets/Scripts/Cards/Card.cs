@@ -5,12 +5,10 @@ public class Card : MonoBehaviour
 {
     private CardData data;
     private bool isPlayed;
-    private int armor;
-    private int damage;
+    private int currentHP;
 
     public CardData Data => data;
-    public int Armor => armor;
-    public int Damage => damage;
+    public int CurrentHP => currentHP;
 
     public Action OnDestroy;
     public Action<Card, int> OnGetDamage;
@@ -18,8 +16,7 @@ public class Card : MonoBehaviour
     public void InitializeCard(CardData data)
     {
         this.data = data;
-        this.armor = data.armor;
-        this.damage = data.damage;
+        currentHP = data.armor;
         isPlayed = false;
     }
 
@@ -58,10 +55,10 @@ public class Card : MonoBehaviour
 
     public void GetDamage(int damage)
     {
-        armor -= damage;
+        currentHP -= damage;
         OnGetDamage?.Invoke(this, damage);
 
-        if (armor <= 0)
+        if (currentHP <= 0)
         {
             OnDestroy?.Invoke();
         }

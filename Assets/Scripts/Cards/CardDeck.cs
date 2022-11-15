@@ -7,6 +7,8 @@ public class CardDeck : MonoBehaviour
     public Transform cardContainer;
     [SerializeField] private List<Card> cards;
 
+    public List<Card> Cards => cards;
+
     public void ShuffleCards()
     {
         //Clear current cards

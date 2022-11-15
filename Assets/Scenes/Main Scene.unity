@@ -501,6 +501,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 170195793070082222, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: cardDeck
+      value: 
+      objectReference: {fileID: 3732356386927294717}
+    - target: {fileID: 1405974706652934220, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405974706652934220, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405974706652934220, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405974706652934220, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506780421885921933, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2506780421885921934, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
       propertyPath: m_Name
       value: Main Canvas
@@ -589,6 +613,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2801066253948533578, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801066253948533578, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801066253948533578, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801066253948533578, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894468692901233779, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894468692901233779, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894468692901233779, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894468692901233779, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755217260752084724, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755217260752084724, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9199793760360622958, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
@@ -668,6 +732,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0613bbd31a22bf4781dabed32775d88, type: 3}
+--- !u!114 &3732356386927294717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3732356387019272096, guid: d0613bbd31a22bf4781dabed32775d88, type: 3}
+  m_PrefabInstance: {fileID: 3732356386927294716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f9fb3c319d8bf4db311d097f30c467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6052810559580141933
 PrefabInstance:
   m_ObjectHideFlags: 0
