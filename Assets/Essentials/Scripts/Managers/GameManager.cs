@@ -5,6 +5,7 @@ public class GameManager : MSingleton<GameManager>
 {
     public int maxCardsOnDeck;
     private bool isGamePlaying;
+    public Boss sampleBoss;
 
     public bool IsGamePlaying => isGamePlaying;
 
@@ -18,6 +19,9 @@ public class GameManager : MSingleton<GameManager>
         if (isGamePlaying)
             return;
 
+        //TODO find a way to start fight
+        Player.Instance.StartFight(sampleBoss);
+        sampleBoss.StartFight(Player.Instance);
 
         GameEvents.OnLevelLoaded?.Invoke();
     }

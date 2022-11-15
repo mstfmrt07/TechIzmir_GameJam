@@ -11,6 +11,8 @@ public class CardDeck : MonoBehaviour
 
     public void ShuffleCards()
     {
+        Debug.Log("Cards are shuffling...");
+
         //Clear current cards
         cards.Clear();
         var drawedCards = CardManager.Instance.DrawCards(GameManager.Instance.maxCardsOnDeck);

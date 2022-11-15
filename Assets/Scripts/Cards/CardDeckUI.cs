@@ -9,13 +9,9 @@ public class CardDeckUI : MonoBehaviour
     public CardDeck cardDeck;
     public float rotationOffset;
     
-    private void Start()
-    {
-        InitializeCards();
-    }
-
     public void InitializeCards()
     {
+        ClearCards();
         if (cardDeck.Cards.Count == 0)
             return;
 
@@ -32,5 +28,13 @@ public class CardDeckUI : MonoBehaviour
     public void UpdateUI()
     {
         //TODO
+    }
+
+    public void ClearCards()
+    {
+        foreach (Transform child in cardsContainer)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

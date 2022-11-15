@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     public int CurrentHP => currentHP;
 
     public Action OnDestroy;
+    public Action OnCardPlayed;
     public Action<Card, int> OnGetDamage;
 
     public void InitializeCard(CardData data)
@@ -46,6 +47,7 @@ public class Card : MonoBehaviour
 
         player.SpendMana(data.requiredMana);
         isPlayed = true;
+        OnCardPlayed?.Invoke();
     }
 
     public void DestroyCard()

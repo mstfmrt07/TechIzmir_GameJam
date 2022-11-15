@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MSingleton<Player>
+public class Player : MSingleton<Player>, IGameEventsHandler
 {
     public int hp;
     public int mana;
     public CardDeck cardDeck;
     public Transform tableCardsContainer;
-    private List<Card> cardsOnTable;
+    private List<Card> cardsOnTable = new List<Card>();
 
     private Boss currentBoss;
 
@@ -16,7 +16,7 @@ public class Player : MSingleton<Player>
 
     private void Awake()
     {
-        cardDeck.ShuffleCards();
+        SubscribeGameEvents();
     }
 
     public void StartFight(Boss boss)
@@ -59,5 +59,30 @@ public class Player : MSingleton<Player>
         {
             mana -= amount;
         }
+    }
+
+    public void SubscribeGameEvents()
+    {
+        GameEvents.OnLevelLoaded += OnLevelLoaded;
+        GameEvents.OnLevelStarted += OnLevelStarted;
+        GameEvents.OnLevelFailed += OnLevelFailed;
+        GameEvents.OnLevelSucceeded += OnLevelSucceeded;
+    }
+
+    public void OnLevelLoaded()
+    {
+    }
+
+    public void OnLevelStarted()
+    {
+        cardDeck.ShuffleCards();
+    }
+
+    public void OnLevelFailed()
+    {
+    }
+
+    public void OnLevelSucceeded()
+    {
     }
 }

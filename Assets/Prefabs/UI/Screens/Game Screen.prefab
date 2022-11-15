@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dcefe03f609654f804d94ad97f3a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardDeckUI: {fileID: 5530078642953867397}
 --- !u!225 &4104976114248840837
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -541,3 +542,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5996245819303786825, guid: 0229158979c36794b9d2043518210cee, type: 3}
   m_PrefabInstance: {fileID: 6102507962149221129}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5530078642953867397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1733533537683432332, guid: 0229158979c36794b9d2043518210cee, type: 3}
+  m_PrefabInstance: {fileID: 6102507962149221129}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b14d668ad98fb408ef60fedaf83d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -6,6 +6,7 @@ public class UIManager : MSingleton<UIManager>, IGameEventsHandler
     [Header("References")]
     public StartScreen startScreen;
     public GameScreen gameScreen;
+    public WinScreen winScreen;
     public LoseScreen loseScreen;
 
     [Header("Values")]
@@ -95,6 +96,6 @@ public class UIManager : MSingleton<UIManager>, IGameEventsHandler
 
     public void OnLevelSucceeded()
     {
-        SwitchScreen(gameScreen);
+        SwitchScreen(winScreen);
     }
 }
