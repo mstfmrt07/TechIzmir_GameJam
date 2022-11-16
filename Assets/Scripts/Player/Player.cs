@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Player : MSingleton<Player>, IGameEventsHandler
+public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
 {
     public PlayerUI playerUI;
     public int initialHP;
@@ -12,8 +12,10 @@ public class Player : MSingleton<Player>, IGameEventsHandler
     public Transform tableCardsContainer;
 
     private List<Card> cardsOnTable = new List<Card>();
-    private Boss currentBoss;
 
+    private Boss currentEnemy;
+
+    private bool canPlayCard = false;
     private int currentHP;
     private int currentMana;
 
@@ -48,18 +50,22 @@ public class Player : MSingleton<Player>, IGameEventsHandler
         SubscribeGameEvents();
     }
 
-    public void StartFight(Boss boss)
+    public void StartFight(IRoundPlayer enemy)
     {
-        currentBoss = boss;
+        currentEnemy = (Boss)enemy;
         currentHP = initialHP;
         currentMana = initialMana;
 
         playerUI.Initialize();
+        Debug.Log($"{gameObject.name}, started the fight with {currentEnemy.gameObject.name}");
         OnPlayerUpdated?.Invoke();
     }
 
     public bool AttemptPlayCard(Card card)
     {
+        if (!canPlayCard)
+            return false;
+
         bool hasEnoughMana = SpendMana(card.Data.requiredMana);
         if (hasEnoughMana)
         {
@@ -84,20 +90,20 @@ public class Player : MSingleton<Player>, IGameEventsHandler
         if (card == null)
         {
             currentHP -= damage;
-            Debug.Log($"{gameObject.name}, takes {damage} damage.");
+            WarningMessage.Instance.Show($"{gameObject.name}, takes {damage} damage.");
         }
         else
         {
             card.GetDamage(damage);
-            Debug.Log($"{card.Data.cardName}, takes {damage} damage.");
+            WarningMessage.Instance.Show($"{card.Data.cardName}, takes {damage} damage.");
         }
         OnPlayerUpdated?.Invoke();
     }
 
     public void Attack(int damage)
     {
-        Debug.Log($"{gameObject.name}, deals {damage} damage to {currentBoss.Data.name}.");
-        currentBoss.GetDamage(damage);
+        Debug.Log($"{gameObject.name}, deals {damage} damage to {currentEnemy.Data.name}.");
+        currentEnemy.GetDamage(damage);
     }
 
     public bool SpendMana(int amount)
@@ -126,7 +132,6 @@ public class Player : MSingleton<Player>, IGameEventsHandler
 
     public void OnLevelStarted()
     {
-        cardDeck.ShuffleCards();
     }
 
     public void OnLevelFailed()
@@ -135,5 +140,18 @@ public class Player : MSingleton<Player>, IGameEventsHandler
 
     public void OnLevelSucceeded()
     {
+    }
+
+    public void TakeTurn()
+    {
+        canPlayCard = true;
+        currentMana = initialMana;
+        cardDeck.DrawCard();
+    }
+
+    public void GiveTurn()
+    {
+        canPlayCard = false;
+        RoundManager.Instance.GiveTurn(currentEnemy);
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class CardUI : MonoBehaviour, IPointerUpHandler
 {
@@ -55,7 +56,11 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
         cardDragger.OnDragStarted -= OnDragStarted;
         cardDragger.OnDragCancelled -= OnDragCancelled;
 
-        Destroy(gameObject);
+        ghostCard.SetActive(false);
+        transform.DOScale(0f, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            Destroy(gameObject);
+        });
     }
 
     public void InspectCard()

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +9,19 @@ public class CardDeck : MonoBehaviour
 
     public List<Card> Cards => cards;
 
-    public void ShuffleCards()
+    public Action OnDeckUpdated;
+
+    public void DrawCard()
     {
-        Debug.Log("Cards are shuffling...");
+        Debug.Log("Player draws card...");
 
         //Clear current cards
+        foreach (var card in cards)
+        {
+            card.DestroyCard();
+        }
         cards.Clear();
+
         var drawedCards = CardManager.Instance.DrawCards(GameManager.Instance.maxCardsOnDeck);
 
         foreach (var cardData in drawedCards)
@@ -23,6 +30,8 @@ public class CardDeck : MonoBehaviour
             currentCard.InitializeCard(cardData);
             AddCard(currentCard);
         }
+
+        OnDeckUpdated?.Invoke();
     }
 
     public void AddCard(Card card)

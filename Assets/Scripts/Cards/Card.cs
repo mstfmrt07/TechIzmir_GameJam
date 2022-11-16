@@ -68,6 +68,8 @@ public class Card : MonoBehaviour
     public void DestroyCard()
     {
         //TODO Implement Destroy Card
+        OnDestroy?.Invoke();
+        Destroy(gameObject);
     }
 
     public void GetDamage(int damage)
@@ -77,7 +79,7 @@ public class Card : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            OnDestroy?.Invoke();
+            DestroyCard();
         }
     }
 }

@@ -24,4 +24,9 @@ public class PlayerUI : MonoBehaviour
         armorStat.UpdateUI(player.CurrentArmor.ToString());
         damageStat.UpdateUI(player.CurrentDamage.ToString());
     }
+
+    public void GiveTurn()
+    {
+        Player.Instance.GiveTurn();
+    }
 }

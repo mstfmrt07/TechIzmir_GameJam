@@ -18,11 +18,6 @@ public class LevelManager : MSingleton<LevelManager>
 
     public Level CurrentLevel => currentLevel;
 
-    private void Start()
-    {
-        LoadCurrentLevel();
-    }
-
     public void LoadLevel(int levelNumber)
     {
         CurrentLevelNumber = levelNumber;

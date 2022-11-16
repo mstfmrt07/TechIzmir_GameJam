@@ -19,6 +19,7 @@ public class CardInspectorUI : MSingleton<CardInspectorUI>
         currentCard = Instantiate(cardUI.cardDragger.gameObject, container);
 
         currentCard.GetComponent<DraggableUI>().IsActive = false;
+        currentCard.GetComponent<ScalableButton>().interactable = false;
         currentCard.transform.localPosition = Vector3.zero;
         currentCard.transform.rotation = Quaternion.Euler(Vector3.zero);
         currentCard.transform.localScale = Vector3.one * scaleFactor;

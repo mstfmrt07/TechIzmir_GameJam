@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TAP TO START
+  m_Text: "BA\u015ELAMAK \u0130\xC7\u0130N DOKUN"
 --- !u!114 &3881575843803725180
 MonoBehaviour:
   m_ObjectHideFlags: 0

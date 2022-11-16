@@ -11,6 +11,12 @@ public class CardDeckUI : MonoBehaviour
     
     public void InitializeCards()
     {
+        cardDeck.OnDeckUpdated += UpdateUI;
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
         ClearCards();
         if (cardDeck.Cards.Count == 0)
             return;
@@ -23,11 +29,6 @@ public class CardDeckUI : MonoBehaviour
 
             cardUI.transform.RotateAround(cardsContainer.position, Vector3.forward, (baseRotation - rotationOffset * i));
         }
-    }
-
-    public void UpdateUI()
-    {
-        //TODO
     }
 
     public void ClearCards()
