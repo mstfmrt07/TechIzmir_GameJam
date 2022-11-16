@@ -14,13 +14,7 @@ public class CardDeck : MonoBehaviour
     public void DrawCard()
     {
         Debug.Log("Player draws card...");
-
-        //Clear current cards
-        foreach (var card in cards)
-        {
-            card.DestroyCard();
-        }
-        cards.Clear();
+        ClearDeck();
 
         var drawedCards = CardManager.Instance.DrawCards(GameManager.Instance.maxCardsOnDeck);
 
@@ -56,5 +50,15 @@ public class CardDeck : MonoBehaviour
         //TODO
         cards.Remove(card);
         Destroy(card.gameObject);
+    }
+
+    public void ClearDeck()
+    {
+        //Clear current cards
+        foreach (var card in cards.ToArray())
+        {
+            RemoveCard(card);
+        }
+        cards.Clear();
     }
 }

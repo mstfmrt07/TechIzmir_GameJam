@@ -1,8 +1,9 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IRoundPlayer
 {
     public BossData data;
     public BossUI bossUI;
@@ -10,7 +11,7 @@ public class Boss : MonoBehaviour
 
     private int currentHP;
     private int currentMana;
-    private Range<int> damageRange;
+
     private Player currentEnemy;
 
     public BossData Data => data;
@@ -24,18 +25,6 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         bossUI.gameObject.SetActive(false);
-    }
-
-    public void StartFight(Player player)
-    {
-        currentHP = data.hp;
-        currentMana = data.mana;
-        damageRange = data.damageRange;
-        currentEnemy = player;
-
-        bossUI.gameObject.SetActive(true);
-        bossUI.Initialize(this);
-        OnBossUpdated?.Invoke();
     }
 
     public void GetDamage(int damage)
@@ -61,6 +50,7 @@ public class Boss : MonoBehaviour
 
         //TODO Give turn to the player
         WarningMessage.Instance.Show("Boss does not have enough mana!");
+        GiveTurn();
     }
 
     public void AttemptAttack()
@@ -68,10 +58,39 @@ public class Boss : MonoBehaviour
         var enemyCards = currentEnemy.CardsOnTable;
         Card cardToAttack = null;
 
+        List<Card> attackCards = new List<Card>();
+        List<Card> defenseCards = new List<Card>();
+
         //TODO Implement boss attack
         foreach (Card card in enemyCards)
         {
+            if (card.Data.type == CardType.Attack || card.Data.type == CardType.Spell)
+                attackCards.Add(card);
+            else
+                defenseCards.Add(card);
+        }
 
+        int maxAttack = 0;
+        foreach (var attackCard in attackCards)
+        {
+            if (attackCard.Data.damage >= maxAttack)
+            {
+                cardToAttack = attackCard;
+            }
+        }
+
+        if (cardToAttack == null)
+        {
+            int medianDamage = (data.damageRange.min + data.damageRange.max) / 2;
+            int acceptableHP = 0;
+            foreach (var defenseCard in defenseCards)
+            {
+                if (medianDamage >= defenseCard.CurrentHP && defenseCard.CurrentHP >= acceptableHP)
+                {
+                    acceptableHP = defenseCard.CurrentHP;
+                    cardToAttack = defenseCard;
+                }
+            }
         }
 
         Attack(currentEnemy, cardToAttack);
@@ -79,7 +98,7 @@ public class Boss : MonoBehaviour
 
     public void Attack(Player player, Card card = null)
     {
-        var dealtDamage = UnityEngine.Random.Range(damageRange.min, damageRange.max + 1);
+        var dealtDamage = UnityEngine.Random.Range(data.damageRange.min, data.damageRange.max + 1);
         player.GetDamage(card, dealtDamage);
         OnBossUpdated?.Invoke();
     }
@@ -94,5 +113,27 @@ public class Boss : MonoBehaviour
         }
 
         return hasEnoughMana;
+    }
+
+    public void TakeTurn()
+    {
+        currentMana = data.mana;
+        StartCoroutine(PerformAttackSequence());
+    }
+
+    public void GiveTurn()
+    {
+        RoundManager.Instance.GiveTurn(currentEnemy);
+    }
+
+    public void StartFight(IRoundPlayer enemy)
+    {
+        currentHP = data.hp;
+        currentMana = data.mana;
+        currentEnemy = (Player)enemy;
+
+        bossUI.gameObject.SetActive(true);
+        bossUI.Initialize(this);
+        OnBossUpdated?.Invoke();
     }
 }

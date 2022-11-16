@@ -151,6 +151,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
 
     public void GiveTurn()
     {
+        cardDeck.ClearDeck();
         canPlayCard = false;
         RoundManager.Instance.GiveTurn(currentEnemy);
     }
