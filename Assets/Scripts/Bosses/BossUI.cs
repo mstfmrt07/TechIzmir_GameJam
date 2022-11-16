@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,21 +5,23 @@ public class BossUI : MonoBehaviour
 {
     public Boss boss;
 
-    public TextMeshProUGUI hpText;
+    public StatUI hpStat;
+    public StatUI manaStat;
     public TextMeshProUGUI nameText;
 
     public void Initialize(Boss boss)
     {
         this.boss = boss;
-        boss.OnGetDamage += UpdateUI;
+        boss.OnBossUpdated += UpdateUI;
 
-        UpdateUI(0);
+        UpdateUI();
     }
 
-    public void UpdateUI(int damage)
+    public void UpdateUI()
     {
         nameText.text = boss.Data.bossName;
-        hpText.text = boss.CurrentHP.ToString();
+        hpStat.UpdateUI(boss.CurrentHP.ToString());
+        manaStat.UpdateUI(boss.CurrentMana.ToString());
     }
 
 }

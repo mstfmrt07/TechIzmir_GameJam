@@ -5,6 +5,7 @@ using System;
 
 public class Player : MSingleton<Player>, IGameEventsHandler
 {
+    public PlayerUI playerUI;
     public int initialHP;
     public int initialMana;
     public CardDeck cardDeck;
@@ -18,6 +19,26 @@ public class Player : MSingleton<Player>, IGameEventsHandler
 
     public int CurrentHP => currentHP;
     public int CurrentMana => currentMana;
+
+    public int CurrentArmor
+    {
+        get
+        {
+            int armor = 0;
+            cardsOnTable.ForEach(x => armor += x.CurrentHP);
+            return armor;
+        }
+    }
+
+    public int CurrentDamage
+    {
+        get
+        {
+            int damage = 0;
+            cardsOnTable.ForEach(x => damage += x.Data.damage);
+            return damage;
+        }
+    }
 
     public List<Card> CardsOnTable => cardsOnTable;
     public Action OnPlayerUpdated;
@@ -33,6 +54,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler
         currentHP = initialHP;
         currentMana = initialMana;
 
+        playerUI.Initialize();
         OnPlayerUpdated?.Invoke();
     }
 
@@ -61,7 +83,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler
     {
         if (card == null)
         {
-            initialHP -= damage;
+            currentHP -= damage;
             Debug.Log($"{gameObject.name}, takes {damage} damage.");
         }
         else
@@ -80,10 +102,10 @@ public class Player : MSingleton<Player>, IGameEventsHandler
 
     public bool SpendMana(int amount)
     {
-        bool hasEnoughMana = (initialMana - amount >= 0);
+        bool hasEnoughMana = (currentMana - amount >= 0);
         if (hasEnoughMana)
         {
-            initialMana -= amount;
+            currentMana -= amount;
             OnPlayerUpdated?.Invoke();
         }
 

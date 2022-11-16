@@ -11,9 +11,10 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
 
     private Card card;
     public Image cardImage;
-    public TextMeshProUGUI armorText;
-    public TextMeshProUGUI damageText;
-    public TextMeshProUGUI manaText;
+    public StatUI manaStat;
+    public StatUI armorStat;
+    public StatUI damageStat;
+
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI nameText;
 
@@ -37,9 +38,10 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
         cardImage.sprite = card.Data.cardIcon;
         nameText.text = card.Data.cardName;
         descriptionText.text = card.Data.description;
-        armorText.text = card.CurrentHP.ToString();
-        damageText.text = card.Data.damage.ToString();
-        manaText.text = card.Data.requiredMana.ToString();
+
+        armorStat.UpdateUI(card.CurrentHP.ToString());
+        damageStat.UpdateUI(card.Data.damage.ToString());
+        manaStat.UpdateUI(card.Data.requiredMana.ToString());
     }
 
     public void DestroyUI()

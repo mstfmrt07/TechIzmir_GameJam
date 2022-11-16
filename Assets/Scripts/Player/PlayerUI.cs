@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
     private Player player;
-    public TextMeshProUGUI hpText;
-    public TextMeshProUGUI manaText;
+    public StatUI hpStat;
+    public StatUI manaStat;
+    public StatUI armorStat;
+    public StatUI damageStat;
 
     public void Initialize()
     {
@@ -19,7 +19,9 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        hpText.text = player.CurrentHP.ToString();
-        hpText.text = player.CurrentMana.ToString();
+        hpStat.UpdateUI(player.CurrentHP.ToString());
+        manaStat.UpdateUI(player.CurrentMana.ToString());
+        armorStat.UpdateUI(player.CurrentArmor.ToString());
+        damageStat.UpdateUI(player.CurrentDamage.ToString());
     }
 }

@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ca6e1090da8bfab48bb0e5a50b8c9d17, type: 2}
   bossUI: {fileID: 9189544856382145927}
+  attackCooldown: 1
 --- !u!1 &2383472586599045170
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 8919806448755254388}
-  hpText: {fileID: 6420604581312626555}
+  hpStat: {fileID: 0}
+  manaStat: {fileID: 0}
   nameText: {fileID: 2186117067265940230}
 --- !u!1 &3733709728960407764
 GameObject:
