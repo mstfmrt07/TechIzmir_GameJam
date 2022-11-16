@@ -42,22 +42,29 @@ public class Boss : MonoBehaviour, IRoundPlayer
     public IEnumerator PerformAttackSequence()
     {
         //While it has enough mana to attack
-        while(SpendMana(1))
+        yield return new WaitForSeconds(attackCooldown);
+        while (SpendMana(1))
         {
             AttemptAttack();
             yield return new WaitForSeconds(attackCooldown);
         }
 
         //TODO Give turn to the player
-        WarningMessage.Instance.Show("Boss does not have enough mana!");
+        WarningMessage.Instance.Show("Sýra sende!");
         GiveTurn();
     }
 
     public void AttemptAttack()
     {
         var enemyCards = currentEnemy.CardsOnTable;
-        Card cardToAttack = null;
 
+        if (enemyCards.Count == 0)
+        {
+            Attack(currentEnemy, null);
+            return;
+        }
+
+        Card cardToAttack = enemyCards[0];
         List<Card> attackCards = new List<Card>();
         List<Card> defenseCards = new List<Card>();
 
@@ -70,7 +77,7 @@ public class Boss : MonoBehaviour, IRoundPlayer
                 defenseCards.Add(card);
         }
 
-        int maxAttack = 0;
+        int maxAttack = -1;
         foreach (var attackCard in attackCards)
         {
             if (attackCard.Data.damage >= maxAttack)
@@ -119,11 +126,13 @@ public class Boss : MonoBehaviour, IRoundPlayer
     {
         currentMana = data.mana;
         StartCoroutine(PerformAttackSequence());
+        OnBossUpdated?.Invoke();
     }
 
     public void GiveTurn()
     {
         RoundManager.Instance.GiveTurn(currentEnemy);
+        OnBossUpdated?.Invoke();
     }
 
     public void StartFight(IRoundPlayer enemy)

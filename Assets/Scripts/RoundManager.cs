@@ -1,16 +1,10 @@
 
-public class RoundManager : MSingleton<RoundManager>
+public class RoundManager : MSingleton<RoundManager>, IResettable
 {
-    private IRoundPlayer player;
-    private IRoundPlayer enemy;
-
     private IRoundPlayer currentPlayer;
 
     public void StartRound(IRoundPlayer player, IRoundPlayer enemy)
     {
-        this.player = player;
-        this.enemy = enemy;
-
         player.StartFight(enemy);
         enemy.StartFight(player);
 
@@ -22,5 +16,10 @@ public class RoundManager : MSingleton<RoundManager>
     {
         currentPlayer = roundPlayer;
         currentPlayer.TakeTurn();
+    }
+
+    public void ApplyReset()
+    {
+        currentPlayer = null;
     }
 }

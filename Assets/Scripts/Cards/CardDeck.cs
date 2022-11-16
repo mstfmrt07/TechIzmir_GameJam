@@ -49,7 +49,7 @@ public class CardDeck : MonoBehaviour
 
         //TODO
         cards.Remove(card);
-        Destroy(card.gameObject);
+        card.DestroyCard();
     }
 
     public void ClearDeck()

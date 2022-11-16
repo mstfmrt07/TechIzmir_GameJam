@@ -170,6 +170,10 @@ MonoBehaviour:
   cardDatas:
   - {fileID: 11400000, guid: 5685f1a49793a824a8b4096c335b6dd7, type: 2}
   - {fileID: 11400000, guid: d3597e5b02e2d8a4ba99a76b44c2396b, type: 2}
+  - {fileID: 11400000, guid: 5685f1a49793a824a8b4096c335b6dd7, type: 2}
+  - {fileID: 11400000, guid: d3597e5b02e2d8a4ba99a76b44c2396b, type: 2}
+  - {fileID: 11400000, guid: 5685f1a49793a824a8b4096c335b6dd7, type: 2}
+  - {fileID: 11400000, guid: d3597e5b02e2d8a4ba99a76b44c2396b, type: 2}
 --- !u!114 &180999943 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2302976366399896669, guid: d7e1760cd2b3d74459d5e63c3b0e901f, type: 3}

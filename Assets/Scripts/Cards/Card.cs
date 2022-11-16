@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
     public CardData Data => data;
     public int CurrentHP => currentHP;
 
-    public Action OnDestroy;
+    public Action<Card> OnDestroy;
     public Action OnCardPlayed;
     public Action<Card, int> OnGetDamage;
 
@@ -68,7 +68,7 @@ public class Card : MonoBehaviour
     public void DestroyCard()
     {
         //TODO Implement Destroy Card
-        OnDestroy?.Invoke();
+        OnDestroy?.Invoke(this);
         Destroy(gameObject);
     }
 

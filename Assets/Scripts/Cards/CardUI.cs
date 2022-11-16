@@ -24,7 +24,7 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
         this.card = card;
         card.OnGetDamage += UpdateUI;
         card.OnDestroy += DestroyUI;
-        card.OnCardPlayed += DestroyUI;
+        card.OnCardPlayed += () => DestroyUI(card);
 
         cardDragger.IsActive = true;
         cardDragger.OnDragEnded += PlayCard;
@@ -37,7 +37,7 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
     public void UpdateUI(Card card, int damage)
     {
         cardImage.sprite = card.Data.cardIcon;
-        nameText.text = card.Data.cardName;
+        nameText.text = card.Data.cardName.ToUpper();
         descriptionText.text = card.Data.description;
 
         armorStat.UpdateUI(card.CurrentHP.ToString(), "-" + damage.ToString());
@@ -45,11 +45,10 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
         manaStat.UpdateUI(card.Data.requiredMana.ToString());
     }
 
-    public void DestroyUI()
+    public void DestroyUI(Card card)
     {
         card.OnGetDamage -= UpdateUI;
         card.OnDestroy -= DestroyUI;
-        card.OnCardPlayed -= DestroyUI;
 
         cardDragger.IsActive = false;
         cardDragger.OnDragEnded -= PlayCard;
@@ -75,7 +74,7 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
     {
         if (Player.Instance.AttemptPlayCard(card))
         {
-            DestroyUI();
+            DestroyUI(card);
         }
         else
         {

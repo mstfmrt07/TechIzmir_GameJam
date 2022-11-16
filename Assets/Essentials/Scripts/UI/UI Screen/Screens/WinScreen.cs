@@ -18,4 +18,9 @@ public class WinScreen : UIScreen
     {
         base.Close();
     }
+
+    public void WinAction()
+    {
+        GameManager.Instance.RestartGame();
+    }
 }

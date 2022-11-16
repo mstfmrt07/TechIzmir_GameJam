@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InputManager : MSingleton<InputManager>, IGameEventsHandler
+public class InputManager : MSingleton<InputManager>, IGameEventsHandler, IResettable
 {
     public TapDetector tapToStart;
 
@@ -35,5 +35,11 @@ public class InputManager : MSingleton<InputManager>, IGameEventsHandler
 
     public void OnLevelSucceeded()
     {
+    }
+
+    public void ApplyReset()
+    {
+        tapToStart.OnTap -= GameManager.Instance.StartGame;
+        tapToStart.IsActive = false;
     }
 }

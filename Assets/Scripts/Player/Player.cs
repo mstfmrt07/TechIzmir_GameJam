@@ -44,6 +44,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
 
     public List<Card> CardsOnTable => cardsOnTable;
     public Action OnPlayerUpdated;
+    public Action OnDestroy;
 
     private void Awake()
     {
@@ -70,8 +71,8 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         if (hasEnoughMana)
         {
             cardDeck.PlayCard(card);
+            AddCardToTable(card);
 
-            cardsOnTable.Add(card);
             card.transform.parent = tableCardsContainer;
             //TODO Implement card order on table
             card.transform.localPosition = Vector3.zero + (Vector3.right * 0.6f * cardsOnTable.Count);
@@ -85,12 +86,29 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         return hasEnoughMana;
     }
 
+    public void AddCardToTable(Card card)
+    {
+        cardsOnTable.Add(card);
+        card.OnDestroy += RemoveCardFromTable;
+    }
+
+    private void RemoveCardFromTable(Card card)
+    {
+        card.OnDestroy -= RemoveCardFromTable;
+        cardsOnTable.Remove(card);
+    }
+
     public void GetDamage(Card card, int damage)
     {
         if (card == null)
         {
             currentHP -= damage;
             WarningMessage.Instance.Show($"{gameObject.name}, takes {damage} damage.");
+
+            if (currentHP <= 0)
+            {
+                OnDestroy?.Invoke();
+            }
         }
         else
         {
@@ -147,6 +165,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         canPlayCard = true;
         currentMana = initialMana;
         cardDeck.DrawCard();
+        OnPlayerUpdated?.Invoke();
     }
 
     public void GiveTurn()
@@ -154,5 +173,6 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         cardDeck.ClearDeck();
         canPlayCard = false;
         RoundManager.Instance.GiveTurn(currentEnemy);
+        OnPlayerUpdated?.Invoke();
     }
 }
