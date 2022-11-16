@@ -39,7 +39,7 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
         nameText.text = card.Data.cardName;
         descriptionText.text = card.Data.description;
 
-        armorStat.UpdateUI(card.CurrentHP.ToString());
+        armorStat.UpdateUI(card.CurrentHP.ToString(), "-" + damage.ToString());
         damageStat.UpdateUI(card.Data.damage.ToString());
         manaStat.UpdateUI(card.Data.requiredMana.ToString());
     }
