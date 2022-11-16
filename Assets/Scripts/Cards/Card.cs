@@ -1,8 +1,15 @@
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class Card : MonoBehaviour
 {
+    [Header("References")]
+    public CardWorldUI cardWorldUI;
+    public GameObject visuals;
+    public Transform artifactBase;
+    public float maxArtifactScale;
+
     private CardData data;
     private bool isPlayed;
     private int currentHP;
@@ -19,6 +26,9 @@ public class Card : MonoBehaviour
         this.data = data;
         currentHP = data.armor;
         isPlayed = false;
+
+        visuals.SetActive(false);
+        cardWorldUI.Initialize(this);
     }
 
     public void Play()
@@ -47,12 +57,18 @@ public class Card : MonoBehaviour
 
         player.SpendMana(data.requiredMana);
         isPlayed = true;
+
+        visuals.SetActive(true);
+        var artifact = Instantiate(data.artifactPrefab, artifactBase);
+        artifactBase.localScale = Vector3.zero;
+        artifactBase.DOScale(maxArtifactScale, 1.2f).SetEase(Ease.OutBounce);
+
         OnCardPlayed?.Invoke();
     }
 
     public void DestroyCard()
     {
-
+        //TODO Implement Destroy Card
     }
 
     public void GetDamage(int damage)

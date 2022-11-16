@@ -31,6 +31,8 @@ public class Player : MSingleton<Player>, IGameEventsHandler
 
         cardsOnTable.Add(card);
         card.transform.parent = tableCardsContainer;
+        //TODO Implement card order on table
+        card.transform.localPosition = Vector3.zero + (Vector3.right * 0.6f * cardsOnTable.Count);
     }
 
     public void GetDamage(Card card, int damage)

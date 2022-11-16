@@ -11,6 +11,7 @@ public class CardData : ScriptableObject
     public int damage;
     public int requiredMana;
     public Sprite cardIcon;
+    public GameObject artifactPrefab;
 }
 
 public enum CardEra
