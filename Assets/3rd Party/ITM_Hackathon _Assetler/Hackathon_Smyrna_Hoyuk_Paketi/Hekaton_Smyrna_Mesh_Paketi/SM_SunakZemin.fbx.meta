@@ -3,7 +3,12 @@ guid: 679151a633c1a0940a944a53a647b7c0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Duvar_Mermer
+    second: {fileID: 2100000, guid: 5533b70ceb2f1cf499e7cdaca0b25292, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -20,3 +20,4 @@ MonoBehaviour:
   damage: 12
   requiredMana: 2
   cardIcon: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  artifactPrefab: {fileID: 1488214559912997923, guid: 08f9af75dde4c05498d85d85f5775190, type: 3}
