@@ -60,7 +60,6 @@ public class DraggableUI : Activatable, IBeginDragHandler, IDragHandler, IEndDra
         if (!IsActive)
             return;
 
-
         if (isInSnapRange && dragTimer <= 0f)
         {
             isInSnapRange = false;
@@ -68,10 +67,9 @@ public class DraggableUI : Activatable, IBeginDragHandler, IDragHandler, IEndDra
         }
         else
         {
-            OnDragCancelled?.Invoke();
-            transform.DOMove(originalPos, 0.15f);
+            CancelDrag();
         }
-        
+
         isDragging = false;
         currentDistance = 0f;
         dragOffset = Vector3.zero;
@@ -84,5 +82,16 @@ public class DraggableUI : Activatable, IBeginDragHandler, IDragHandler, IEndDra
         {
             dragTimer -= Time.deltaTime;
         }
+    }
+
+    public void CancelDrag()
+    {
+        OnDragCancelled?.Invoke();
+        transform.DOMove(originalPos, 0.15f);
+
+        isDragging = false;
+        currentDistance = 0f;
+        dragOffset = Vector3.zero;
+        dragTimer = 0f;
     }
 }

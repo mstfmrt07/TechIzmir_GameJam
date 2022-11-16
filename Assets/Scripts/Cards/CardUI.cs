@@ -66,9 +66,14 @@ public class CardUI : MonoBehaviour, IPointerUpHandler
 
     public void PlayCard()
     {
-        Player.Instance.PlayCard(card);
-
-        DestroyUI();
+        if (Player.Instance.AttemptPlayCard(card))
+        {
+            DestroyUI();
+        }
+        else
+        {
+            cardDragger.CancelDrag();
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)

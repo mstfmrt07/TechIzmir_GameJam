@@ -55,7 +55,6 @@ public class Card : MonoBehaviour
                 break;
         }
 
-        player.SpendMana(data.requiredMana);
         isPlayed = true;
 
         visuals.SetActive(true);
