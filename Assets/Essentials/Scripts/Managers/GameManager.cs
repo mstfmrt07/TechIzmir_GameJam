@@ -66,7 +66,6 @@ public class GameManager : MSingleton<GameManager>
     public void RestartGame()
     {
         RecycleBin.Instance.DisposeAll();
-        LoadGame();
         //TODO Implement restart game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
