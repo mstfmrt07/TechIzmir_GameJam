@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e1a81b4b80a9cc41947acef5cbe54a0, type: 3}
-  m_Name: "Athena Tap\u0131na\u011F\u0131"
+  m_Name: Sunak
   m_EditorClassIdentifier: 
-  cardName: "Athena Tap\u0131na\u011F\u0131"
+  cardName: Sunak
   type: 0
   era: 0
-  description: "\u015Eehrin kadim koruyucusu. 10 kalkan verir."
-  armor: 10
+  description: "\u015Eehri koruma rit\xFCellerinin ger\xE7ekle\u015Fti\u011Fi yer.
+    6 kalkan verir."
+  armor: 6
   damage: 0
-  requiredMana: 4
-  cardIcon: {fileID: 21300000, guid: 7888f5512add50645b61c0342d2e1484, type: 3}
-  artifactPrefab: {fileID: 6447400275351133417, guid: 579e7c96552bc9f4e99a127ad7311e85, type: 3}
+  requiredMana: 3
+  cardIcon: {fileID: 21300000, guid: 0c4265922afabd848a16f5a95ea387f2, type: 3}
+  artifactPrefab: {fileID: 9146830948285164623, guid: 7f7996343af6bde4180a67a1c62af132, type: 3}

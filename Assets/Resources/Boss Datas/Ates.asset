@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe47dfd142bd64d42932d0a50b925cf8, type: 3}
-  m_Name: Gulyabani
+  m_Name: Ates
   m_EditorClassIdentifier: 
-  bossName: Gulyabani
-  bossImg: {fileID: 21300000, guid: daf2ab606d4db0d4f9ecf4c02137d2a8, type: 3}
-  description: "Miitolojik k\xF6t\xFC bir canavar. Gece g\xF6reni dilsiz yapar."
-  hp: 30
-  mana: 2
+  bossName: Ates
+  bossImg: {fileID: 21300000, guid: f2eb3b0dc5005fa46810f293ac42db0b, type: 3}
+  description: 
+  hp: 84
+  mana: 1
   damageRange:
     min: 4
-    max: 8
+    max: 16

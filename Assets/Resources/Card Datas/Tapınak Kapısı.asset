@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e1a81b4b80a9cc41947acef5cbe54a0, type: 3}
-  m_Name: Saat Kulesi
+  m_Name: "Tap\u0131nak Kap\u0131s\u0131"
   m_EditorClassIdentifier: 
-  cardName: Saat Kulesi
+  cardName: "Tap\u0131nak Kap\u0131s\u0131"
   type: 2
   era: 0
-  description: "\u015Eehrin ba\u015F tac\u0131. 7 hasar ve 4 kalkan verir."
+  description: "D\u0131\u015F d\xFCnyadan \u015Fehri ay\u0131ran kap\u0131. 5 hasar
+    ve 4 kalkan verir."
   armor: 4
-  damage: 7
-  requiredMana: 3
-  cardIcon: {fileID: 21300000, guid: 0583d5ab6f4b2c44cbd8b118e58075a6, type: 3}
-  artifactPrefab: {fileID: 1488214559912997923, guid: 08f9af75dde4c05498d85d85f5775190, type: 3}
+  damage: 5
+  requiredMana: 2
+  cardIcon: {fileID: 21300000, guid: 7b46f5da8ae5b7143a8789e7ed8ec663, type: 3}
+  artifactPrefab: {fileID: 4520036313638281606, guid: 60f7f0462f114124788731461c430605, type: 3}

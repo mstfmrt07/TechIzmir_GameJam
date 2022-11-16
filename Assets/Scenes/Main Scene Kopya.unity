@@ -390,7 +390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCardsOnDeck: 4
-  sampleBoss: {fileID: 2068936268}
 --- !u!1 &367577050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,17 +1183,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2068936268 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8919806448755254388, guid: 02f17edabd7775d4ca5ca74c822e3a75, type: 3}
-  m_PrefabInstance: {fileID: 6052810559580141933}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7711127fb8ce0d46af5c0ac8e9050ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2506780422566562786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2041,3 +2029,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02f17edabd7775d4ca5ca74c822e3a75, type: 3}
+--- !u!1001 &9023090809138981993
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466570047519309290, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520036313638281606, guid: 60f7f0462f114124788731461c430605, type: 3}
+      propertyPath: m_Name
+      value: Sunak
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60f7f0462f114124788731461c430605, type: 3}

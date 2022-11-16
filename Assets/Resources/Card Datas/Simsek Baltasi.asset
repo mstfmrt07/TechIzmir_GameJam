@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e1a81b4b80a9cc41947acef5cbe54a0, type: 3}
-  m_Name: "Athena Tap\u0131na\u011F\u0131"
+  m_Name: Simsek Baltasi
   m_EditorClassIdentifier: 
-  cardName: "Athena Tap\u0131na\u011F\u0131"
-  type: 0
+  cardName: "\u015Eim\u015Fek Baltas\u0131"
+  type: 1
   era: 0
-  description: "\u015Eehrin kadim koruyucusu. 10 kalkan verir."
-  armor: 10
-  damage: 0
-  requiredMana: 4
-  cardIcon: {fileID: 21300000, guid: 7888f5512add50645b61c0342d2e1484, type: 3}
-  artifactPrefab: {fileID: 6447400275351133417, guid: 579e7c96552bc9f4e99a127ad7311e85, type: 3}
+  description: "Motiflerle s\xFCslenmi\u015F balta. 4 hasar verir, 1 kalkan sa\u011Flar."
+  armor: 1
+  damage: 4
+  requiredMana: 1
+  cardIcon: {fileID: 21300000, guid: 6f49efd2d1042d249b09cc07339e32fc, type: 3}
+  artifactPrefab: {fileID: 972859314253814107, guid: d4e646b14fccbbb4f81010f0cbe95f31, type: 3}

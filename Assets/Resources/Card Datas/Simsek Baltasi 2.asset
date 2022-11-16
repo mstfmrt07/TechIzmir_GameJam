@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a81b4b80a9cc41947acef5cbe54a0, type: 3}
+  m_Name: Simsek Baltasi 2
+  m_EditorClassIdentifier: 
+  cardName: "\u015Eim\u015Fek Baltas\u0131"
+  type: 1
+  era: 0
+  description: "Motiflerle s\xFCslenmi\u015F balta. 4 hasar verir, 1 kalkan sa\u011Flar."
+  armor: 1
+  damage: 4
+  requiredMana: 1
+  cardIcon: {fileID: 21300000, guid: 6f49efd2d1042d249b09cc07339e32fc, type: 3}
+  artifactPrefab: {fileID: 972859314253814107, guid: d4e646b14fccbbb4f81010f0cbe95f31, type: 3}
