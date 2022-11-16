@@ -52,7 +52,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler
         }
         else
         {
-            Debug.Log("Not enough mana!");
+            WarningMessage.Instance.Show("Not enough mana!");
         }
         return hasEnoughMana;
     }
