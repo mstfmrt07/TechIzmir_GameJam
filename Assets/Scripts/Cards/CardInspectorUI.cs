@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class CardInspectorUI : MSingleton<CardInspectorUI>
 {
@@ -14,6 +15,8 @@ public class CardInspectorUI : MSingleton<CardInspectorUI>
 
     public void InspectCard(CardUI cardUI)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.inspectCard);
+        inspectorPanel.transform.localScale = Vector3.one;
         inspectorPanel.SetActive(true);
 
         currentCard = Instantiate(cardUI.cardDragger.gameObject, container);
@@ -21,8 +24,10 @@ public class CardInspectorUI : MSingleton<CardInspectorUI>
         currentCard.GetComponent<DraggableUI>().IsActive = false;
         currentCard.GetComponent<ScalableButton>().interactable = false;
         currentCard.transform.localPosition = Vector3.zero;
-        currentCard.transform.rotation = Quaternion.Euler(Vector3.zero);
-        currentCard.transform.localScale = Vector3.one * scaleFactor;
+        currentCard.transform.rotation = Quaternion.Euler(Vector3.forward * 180f);
+        currentCard.transform.localScale = Vector3.zero;
+        currentCard.transform.DOScale(scaleFactor, 0.5f).SetEase(Ease.OutBounce);
+        currentCard.transform.DOLocalRotate(Vector3.forward * 180f, 0.8f, RotateMode.LocalAxisAdd).SetEase(Ease.OutBounce);
     }
 
     public void CancelInspect()
@@ -33,6 +38,6 @@ public class CardInspectorUI : MSingleton<CardInspectorUI>
             currentCard = null;
         }
 
-        inspectorPanel.SetActive(false);
+        inspectorPanel.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack).OnComplete(() => inspectorPanel.SetActive(false));
     }
 }

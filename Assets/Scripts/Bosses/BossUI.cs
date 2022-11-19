@@ -14,14 +14,14 @@ public class BossUI : MonoBehaviour
         this.boss = boss;
         boss.OnBossUpdated += UpdateUI;
 
-        UpdateUI();
+        UpdateUI(0, 0);
     }
 
-    public void UpdateUI()
+    public void UpdateUI(int deltaHP, int deltaMana)
     {
         nameText.text = boss.Data.bossName;
-        hpStat.UpdateUI(boss.CurrentHP.ToString());
-        manaStat.UpdateUI(boss.CurrentMana.ToString());
+        hpStat.UpdateUI(boss.CurrentHP.ToString(), deltaHP == 0 ? "" : "-" + deltaHP.ToString());
+        manaStat.UpdateUI(boss.CurrentMana.ToString(), deltaMana == 0 ? "" : "-" + deltaMana.ToString());
     }
 
 }

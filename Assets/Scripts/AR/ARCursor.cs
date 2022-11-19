@@ -27,7 +27,9 @@ public class ARCursor : MonoBehaviour
         {
             if (useCursor)
             {
-                GameObject.Instantiate(objectToPlace, transform.position, transform.rotation);
+                //GameObject.Instantiate(objectToPlace, transform.position, transform.rotation);
+                objectToPlace.transform.position = transform.position;
+                objectToPlace.transform.rotation = transform.rotation;
             }
             else
             {
@@ -35,7 +37,9 @@ public class ARCursor : MonoBehaviour
                 raycastManager.Raycast(Input.GetTouch(0).position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
                 if (hits.Count > 0)
                 {
-                    GameObject.Instantiate(objectToPlace, hits[0].pose.position, hits[0].pose.rotation);
+                    //GameObject.Instantiate(objectToPlace, hits[0].pose.position, hits[0].pose.rotation);
+                    objectToPlace.transform.position = hits[0].pose.position;
+                    objectToPlace.transform.rotation = hits[0].pose.rotation;
                 }
             }
         }

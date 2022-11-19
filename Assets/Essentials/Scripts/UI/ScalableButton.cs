@@ -20,7 +20,7 @@ public class ScalableButton : Button
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
-        //SoundManager.Instance.PlaySound(SoundManager.Instance.clickClip);
+        SoundManager.Instance.PlaySound(SoundManager.Instance.buttonClick);
         Select(true);
     }
 

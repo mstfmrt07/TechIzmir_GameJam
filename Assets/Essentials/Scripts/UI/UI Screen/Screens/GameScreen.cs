@@ -7,7 +7,7 @@ public class GameScreen : UIScreen
     public override void Load()
     {
         base.Load();
-        this.Wait(0.5f, () => cardDeckUI.InitializeCards());
+        this.Wait(0.1f, () => cardDeckUI.InitializeCards());
     }
 
     public override void Reset()

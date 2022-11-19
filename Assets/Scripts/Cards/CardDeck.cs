@@ -14,6 +14,7 @@ public class CardDeck : MonoBehaviour
     public void DrawCard()
     {
         Debug.Log("Player draws card...");
+
         ClearDeck();
 
         var drawedCards = CardManager.Instance.DrawCards(GameManager.Instance.maxCardsOnDeck);
@@ -25,6 +26,7 @@ public class CardDeck : MonoBehaviour
             AddCard(currentCard);
         }
 
+        SoundManager.Instance.PlaySound(SoundManager.Instance.initDeck);
         OnDeckUpdated?.Invoke();
     }
 

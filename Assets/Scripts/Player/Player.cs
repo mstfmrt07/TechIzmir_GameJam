@@ -71,17 +71,20 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         if (hasEnoughMana)
         {
             cardDeck.PlayCard(card);
-            AddCardToTable(card);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.playCard);
 
             card.transform.parent = tableCardsContainer;
             //TODO Implement card order on table
-            card.transform.localPosition = Vector3.zero + (Vector3.right * 0.6f * cardsOnTable.Count);
+            card.transform.localPosition = new Vector3(-6f , 0f , 6f) + (Vector3.right * 6f * (cardsOnTable.Count % 4) - (Vector3.forward * 12f * (cardsOnTable.Count / 4)));
+
+            AddCardToTable(card);
+
             OnPlayerUpdated?.Invoke();
             Debug.Log($"{gameObject.name}, plays the card {card.Data.name}.");
         }
         else
         {
-            WarningMessage.Instance.Show("Not enough mana!");
+            WarningMessage.Instance.Show("Yetersiz kudret!");
         }
         return hasEnoughMana;
     }
@@ -103,7 +106,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         if (card == null)
         {
             currentHP -= damage;
-            WarningMessage.Instance.Show($"{gameObject.name}, takes {damage} damage.");
+            WarningMessage.Instance.Show($"{gameObject.name}, {damage} hasar aldý.");
 
             if (currentHP <= 0)
             {
@@ -113,7 +116,7 @@ public class Player : MSingleton<Player>, IGameEventsHandler, IRoundPlayer
         else
         {
             card.GetDamage(damage);
-            WarningMessage.Instance.Show($"{card.Data.cardName}, takes {damage} damage.");
+            WarningMessage.Instance.Show($"{card.Data.cardName}, {damage} hasar aldý.");
         }
         OnPlayerUpdated?.Invoke();
     }

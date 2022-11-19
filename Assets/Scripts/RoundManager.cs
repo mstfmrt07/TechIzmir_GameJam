@@ -9,7 +9,6 @@ public class RoundManager : MSingleton<RoundManager>, IResettable
         enemy.StartFight(player);
 
         GiveTurn(player);
-        WarningMessage.Instance.Show($"Round Started!");
     }
 
     public void GiveTurn(IRoundPlayer roundPlayer)

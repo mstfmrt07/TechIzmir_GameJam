@@ -96,6 +96,6 @@ public class UIManager : MSingleton<UIManager>, IGameEventsHandler
 
     public void OnLevelSucceeded()
     {
-        SwitchScreen(winScreen);
+        StartCoroutine(SwitchScreenAfterSeconds(winScreen, loseScreenDelay));
     }
 }

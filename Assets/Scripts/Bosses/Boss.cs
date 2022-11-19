@@ -2,11 +2,13 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class Boss : MonoBehaviour, IRoundPlayer
 {
     public BossData data;
     public BossUI bossUI;
+    public Transform visuals;
     public int attackCooldown;
 
     private int currentHP;
@@ -17,7 +19,7 @@ public class Boss : MonoBehaviour, IRoundPlayer
     public BossData Data => data;
 
     public Action OnDestroy;
-    public Action OnBossUpdated;
+    public Action<int, int> OnBossUpdated;
 
     public int CurrentHP => currentHP;
     public int CurrentMana => currentMana;
@@ -25,6 +27,7 @@ public class Boss : MonoBehaviour, IRoundPlayer
     private void Awake()
     {
         bossUI.gameObject.SetActive(false);
+        visuals.DOMoveY(visuals.transform.position.y + 1, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
     public void GetDamage(int damage)
@@ -34,9 +37,10 @@ public class Boss : MonoBehaviour, IRoundPlayer
         if(currentHP <= 0)
         {
             OnDestroy?.Invoke();
+            Destroy(gameObject);
         }
 
-        OnBossUpdated?.Invoke();
+        OnBossUpdated?.Invoke(damage, 0);
     }
 
     public IEnumerator PerformAttackSequence()
@@ -105,9 +109,9 @@ public class Boss : MonoBehaviour, IRoundPlayer
 
     public void Attack(Player player, Card card = null)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.bossHit);
         var dealtDamage = UnityEngine.Random.Range(data.damageRange.min, data.damageRange.max + 1);
         player.GetDamage(card, dealtDamage);
-        OnBossUpdated?.Invoke();
     }
 
     public bool SpendMana(int amount)
@@ -116,7 +120,7 @@ public class Boss : MonoBehaviour, IRoundPlayer
         if (hasEnoughMana)
         {
             currentMana -= amount;
-            OnBossUpdated?.Invoke();
+            OnBossUpdated?.Invoke(0, amount);
         }
 
         return hasEnoughMana;
@@ -126,13 +130,11 @@ public class Boss : MonoBehaviour, IRoundPlayer
     {
         currentMana = data.mana;
         StartCoroutine(PerformAttackSequence());
-        OnBossUpdated?.Invoke();
     }
 
     public void GiveTurn()
     {
         RoundManager.Instance.GiveTurn(currentEnemy);
-        OnBossUpdated?.Invoke();
     }
 
     public void StartFight(IRoundPlayer enemy)
@@ -143,6 +145,6 @@ public class Boss : MonoBehaviour, IRoundPlayer
 
         bossUI.gameObject.SetActive(true);
         bossUI.Initialize(this);
-        OnBossUpdated?.Invoke();
+        OnBossUpdated?.Invoke(0, 0);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CardDeckUI : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class CardDeckUI : MonoBehaviour
 
             cardUI.transform.RotateAround(cardsContainer.position, Vector3.forward, (baseRotation - rotationOffset * i));
         }
+        cardsContainer.localScale = Vector3.zero;
+        cardsContainer.DOScale(1f, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void ClearCards()

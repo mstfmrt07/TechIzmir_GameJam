@@ -29,7 +29,7 @@ public class StatUI : MonoBehaviour
         {
             infoText.gameObject.SetActive(true);
             infoText.text = info;
-            infoText.transform.DOLocalMove(initialInfoPos + Vector3.up * 100f, 1f).SetEase(Ease.InBack).OnComplete(() =>
+            infoText.transform.DOLocalMove(initialInfoPos + Vector3.up * 100f, 2f).SetEase(Ease.InBack).OnComplete(() =>
             {
                 infoText.gameObject.SetActive(false);
                 infoText.transform.localPosition = initialInfoPos;

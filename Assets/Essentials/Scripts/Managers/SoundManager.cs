@@ -4,15 +4,14 @@ public class SoundManager : MSingleton<SoundManager>, IGameEventsHandler
 {
     [Header("References")]
     public AudioClip bgMusic;
-    public AudioClip jumpClip;
-    public AudioClip dashClip;
-    public AudioClip fallClip;
-    public AudioClip collectClip;
-    public AudioClip lightningClip;
-    public AudioClip explosionClip;
-    public AudioClip flowerPotClip;
-    public AudioClip dieClip;
-    public AudioClip clickClip;
+    public AudioClip buttonClick;
+    public AudioClip playCard;
+    public AudioClip inspectCard;
+    public AudioClip hit;
+    public AudioClip bossHit;
+    public AudioClip initDeck;
+    public AudioClip success;
+    public AudioClip fail;
 
 
     private AudioSource bgSource;
@@ -20,8 +19,8 @@ public class SoundManager : MSingleton<SoundManager>, IGameEventsHandler
     private void Awake()
     {
         SubscribeGameEvents();
-        bgSource = PlaySound(bgMusic, true);
-        bgSource.volume = 0.5f;
+        //bgSource = PlaySound(bgMusic, true);
+        //bgSource.volume = 0.5f;
     }
 
     public void SubscribeGameEvents()
@@ -71,9 +70,11 @@ public class SoundManager : MSingleton<SoundManager>, IGameEventsHandler
 
     public void OnLevelFailed()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.fail);
     }
 
     public void OnLevelSucceeded()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.success);
     }
 }

@@ -46,10 +46,12 @@ public class Card : MonoBehaviour
                 break;
             case CardType.Attack:
                 player.Attack(data.damage);
+                SoundManager.Instance.PlaySound(SoundManager.Instance.hit);
                 break;
             case CardType.Spell:
                 //TODO do something with armor
                 player.Attack(data.damage);
+                SoundManager.Instance.PlaySound(SoundManager.Instance.hit);
                 break;
             default:
                 break;
@@ -69,17 +71,20 @@ public class Card : MonoBehaviour
     {
         //TODO Implement Destroy Card
         OnDestroy?.Invoke(this);
-        Destroy(gameObject);
+        artifactBase.DOScale(maxArtifactScale, 1.2f).SetEase(Ease.OutBounce);
+        this.Wait(0.5f, () => Destroy(gameObject));
     }
 
     public void GetDamage(int damage)
     {
+        DOTween.Kill(GetInstanceID());
         currentHP -= damage;
         OnGetDamage?.Invoke(this, damage);
+        artifactBase.transform.DOPunchScale(Vector3.one * 0.1f * maxArtifactScale, 0.5f, 10).SetId(GetInstanceID());
 
         if (currentHP <= 0)
         {
-            DestroyCard();
+            this.Wait(0.5f, () => DestroyCard());
         }
     }
 }
