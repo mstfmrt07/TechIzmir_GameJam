@@ -15,7 +15,8 @@ MonoBehaviour:
   cardName: Kamp Atesi
   type: 2
   era: 0
-  description: 
+  description: "Yeni yerle\u015Fkenin temellerini atar, varolan yerle\u015Fkeyi g\xFC\xE7lendirir.
+    16 hasar ve 10 kalkan verir."
   armor: 10
   damage: 16
   requiredMana: 5

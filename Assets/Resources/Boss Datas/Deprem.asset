@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe47dfd142bd64d42932d0a50b925cf8, type: 3}
   m_Name: Deprem
   m_EditorClassIdentifier: 
-  bossName: Deprem
+  bossName: DEPREM
   bossImg: {fileID: 21300000, guid: bd23830e641383e45ab6edff2b5610e9, type: 3}
-  description: "Miitolojik k\xF6t\xFC bir canavar. Gece g\xF6reni dilsiz yapar."
+  description: "Do\u011Fal afet."
   hp: 128
   mana: 2
   damageRange:
