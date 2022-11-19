@@ -567,6 +567,8 @@ MonoBehaviour:
   hit: {fileID: 8300000, guid: 399a7d9c06423824dae19c9a5337e5b9, type: 3}
   bossHit: {fileID: 8300000, guid: 7253415cad8d6444bb34a8205a9245aa, type: 3}
   initDeck: {fileID: 8300000, guid: 5a2a4403c3d93354692defed695a3248, type: 3}
+  success: {fileID: 0}
+  fail: {fileID: 8300000, guid: 4401d80411b180f46945ef165f547d29, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
